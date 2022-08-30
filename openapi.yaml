@@ -1,0 +1,136 @@
+openapi: 3.0.0
+
+info:
+  version: "0.1"
+  title: Neptune's Pride API
+
+servers:
+ - url: https://np.ironhelmet.com
+
+paths:
+  /api:
+    post:
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                game_number: 
+                  type: string
+                code: 
+                  type: string
+                api_version:
+                  type: string 
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scanning_data:
+                    type: object
+                    properties:
+                      fleets:
+                        type: object
+                        additionalProperties: 
+                          $ref: "#/components/schemas/Fleet"
+                      fleet_speed: 
+                        type: number
+                      paused: 
+                        type: boolean
+                      productions:
+                        type: number
+                      tick_fragment: 
+                        type: number
+                      now: 
+                        type: number
+                      tick_rate: 
+                        type: number
+                      production_rate: 
+                        type: number
+                      stars:
+                        type: object
+                        additionalProperties: 
+                          $ref: "#/components/schemas/Star"
+                      stars_for_victory: 
+                        type: number
+                      game_over: 
+                        type: number
+                      started: 
+                        type: boolean 
+                      start_time: 
+                        type: number
+                      total_stars: 
+                        type: number
+                      production_counter: 
+                        type: number
+                      trade_scanned: 
+                        type: number
+                      tick:  
+                        type: number
+                      trade_cost:
+                        type: number
+                      name: 
+                        type: string
+                      player_uid:
+                        type: number
+                      admin: 
+                        type: number
+                      turn_based: 
+                        type: number
+                      war: 
+                        type: number
+                      players:
+                        type: object
+                        additionalProperties: 
+                          $ref: "#/components/schemas/Player"
+                      turn_based_time_out:
+                        type: number
+
+components:
+  schemas:
+    Star:
+      type: object
+      properties: {}
+      
+    Player:
+      type: object
+      properties: {}
+
+    Fleet:
+      type: object
+      properties:
+        uid: 
+          type: number
+        l: 
+          type: number
+        o:
+          description: List of orders
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+        n: 
+          type: string
+          description: Name of the Carrier
+        puid: 
+          type: number
+        w: 
+          type: number
+        y: 
+          type: string
+        x: 
+          type: string
+        st: 
+          type: number
+          description: Number of ships (strength)
+        lx: 
+          type: string
+          description: X coordinate for the fleet's location at the previous tick
+        ly: 
+          type: string
+          description: Y coordinate for the fleet's location at the previous tick
